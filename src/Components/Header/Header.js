@@ -1,13 +1,17 @@
+import { Link } from "react-router-dom";
+
 const Header = () => {
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-slate-200">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <Link to="/" className="normal-case text-xl font-bold text-black">
+          RentHouse
+        </Link>
       </div>
-      <div className="flex-none">
+      <div className="flex-none  text-black">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>Item 1</a>
+            <Link to="/services">Services</Link>
           </li>
           <li tabIndex={0}>
             <a>
@@ -22,7 +26,7 @@ const Header = () => {
                 <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
               </svg>
             </a>
-            <ul className="p-2 bg-base-100">
+            <ul className="p-2">
               <li>
                 <a>Submenu 1</a>
               </li>
@@ -32,7 +36,7 @@ const Header = () => {
             </ul>
           </li>
           <li>
-            <a>Item 3</a>
+            <Link to="/login">Log In</Link>
           </li>
         </ul>
       </div>
