@@ -38,12 +38,16 @@ function FilterBox() {
         <select
           name="location"
           value={formData.location}
+          required
           onChange={handleChange}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100-700 leading-tight focus:outline-none focus:shadow-outline"
         >
           <option value="">Select a location</option>
           <option value="sylhet">Sylhet</option>
           <option value="dhaka">Dhaka</option>
+          <option value="chittagong">Chittagong</option>
+          <option value="barishal">Barishal</option>
+          <option value="rajshahi">Rajshahi</option>
           <option value="khulna">Khulna</option>
         </select>
       </div>
@@ -62,6 +66,7 @@ function FilterBox() {
           value={formData.size}
           onChange={handleChange}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100-700 leading-tight focus:outline-none focus:shadow-outline"
+          required
         >
           <option value="">Select a size</option>
           <option value="small">Small</option>

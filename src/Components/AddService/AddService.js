@@ -39,6 +39,7 @@ function AddService() {
         <input
           type="text"
           name="rooms"
+          required
           value={formData.rooms}
           onChange={handleChange}
           placeholder="eg: 3 bedroom, 2 bathroom, a kitchen"
@@ -55,23 +56,13 @@ function AddService() {
         <input
           type="text"
           name="image"
+          required
           value={formData.image}
           onChange={handleChange}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100  leading-tight focus:outline-none focus:shadow-outline"
         />
       </div>
-      {/* <div className="mb-4">
-        <label htmlFor="email" className="block text-slate-100  font-bold mb-2">
-          Email
-        </label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100  leading-tight focus:outline-none focus:shadow-outline"
-        />
-      </div> */}
+
       {/* Location */}
       <div className="mb-4">
         <label
@@ -83,12 +74,16 @@ function AddService() {
         <select
           name="location"
           value={formData.location}
+          required
           onChange={handleChange}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100  leading-tight focus:outline-none focus:shadow-outline"
         >
           <option value="">Select a location</option>
           <option value="sylhet">Sylhet</option>
           <option value="dhaka">Dhaka</option>
+          <option value="chittagong">Chittagong</option>
+          <option value="barishal">Barishal</option>
+          <option value="rajshahi">Rajshahi</option>
           <option value="khulna">Khulna</option>
         </select>
       </div>
@@ -102,6 +97,7 @@ function AddService() {
         <select
           name="size"
           value={formData.size}
+          required
           onChange={handleChange}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100  leading-tight focus:outline-none focus:shadow-outline"
         >
