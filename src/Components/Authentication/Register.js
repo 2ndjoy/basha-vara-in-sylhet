@@ -1,64 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Register = () => {
+function Register() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (event) => {
+    console.log(email, password);
+    event.preventDefault();
+    setEmail("");
+    setPassword("");
+    // Add your login logic here
+  };
+
   return (
-    <div className=" text-black">
-      <div className="hero min-h-screen">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
-            <h1 className="text-2xl font-bold">Please Sign Up</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>{" "}
-            <p className="py-6 text-xl">
-              Already have an account? Please{" "}
-              <Link to="/login" className="text-blue-400">
-                Log In
-              </Link>
-            </p>
-          </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-slate-300 text-black">
-            <div className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text  text-black">Email</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="email"
-                  className="input input-bordered"
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text  text-black">Password</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="password"
-                  className="input input-bordered"
-                />
-                <label className="label">
-                  <a
-                    href="#"
-                    className="label-text-alt link link-hover text-zinc-800"
-                  >
-                    Forgot password?
-                  </a>
-                </label>
-              </div>
-              <div className="form-control mt-6">
-                <button className="btn btn-primary">Sign Up</button>
-              </div>
-            </div>
-          </div>
+    <div className="flex justify-center items-center h-screen">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      >
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">
+          Create an account
+        </h2>
+        <div className="mb-4">
+          <label className="block  text-black font-bold mb-2" htmlFor="email">
+            Email Address
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3  text-slate-100 leading-tight focus:outline-none focus:shadow-outline"
+            id="email"
+            type="email"
+            placeholder="Email Address"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
         </div>
-      </div>
+        <div className="mb-6">
+          <label
+            className="block  text-black font-bold mb-2"
+            htmlFor="password"
+          >
+            Password
+          </label>
+          <input
+            className="shadow appearance-none border border-red rounded w-full py-2 px-3  text-slate-100 leading-tight focus:outline-none focus:shadow-outline"
+            id="password"
+            type="password"
+            placeholder="********"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </div>
+        <div className="flex items-center justify-between">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit"
+          >
+            Sign Up
+          </button>
+        </div>
+        <label className="label">
+          <a href="#" className="label-text-alt link link-hover text-zinc-800">
+            Forgot password?
+          </a>
+        </label>
+        <label className="label">
+          Already have an account ?
+          <Link to="/login" className="text-blue-400">
+            Log In
+          </Link>
+        </label>
+      </form>
     </div>
   );
-};
+}
 
 export default Register;

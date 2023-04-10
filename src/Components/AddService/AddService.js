@@ -32,7 +32,7 @@ function AddService() {
       <div className="mb-4">
         <label
           htmlFor="rooms"
-          className="block  text-slate-100-700 font-bold mb-2"
+          className="block  text-slate-100  font-bold mb-2"
         >
           <p className="text-black">Number of room</p>
         </label>
@@ -42,13 +42,13 @@ function AddService() {
           value={formData.rooms}
           onChange={handleChange}
           placeholder="eg: 3 bedroom, 2 bathroom, a kitchen"
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100  leading-tight focus:outline-none focus:shadow-outline"
         />
       </div>
       <div className="mb-4">
         <label
           htmlFor="image"
-          className="block  text-slate-100-700 font-bold mb-2"
+          className="block  text-slate-100  font-bold mb-2"
         >
           <p className="text-black">Add an Image link</p>
         </label>
@@ -57,11 +57,11 @@ function AddService() {
           name="image"
           value={formData.image}
           onChange={handleChange}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100  leading-tight focus:outline-none focus:shadow-outline"
         />
       </div>
       {/* <div className="mb-4">
-        <label htmlFor="email" className="block text-slate-100-700 font-bold mb-2">
+        <label htmlFor="email" className="block text-slate-100  font-bold mb-2">
           Email
         </label>
         <input
@@ -69,14 +69,14 @@ function AddService() {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100  leading-tight focus:outline-none focus:shadow-outline"
         />
       </div> */}
       {/* Location */}
       <div className="mb-4">
         <label
           htmlFor="location"
-          className="block text-slate-100-700 font-bold mb-2"
+          className="block text-slate-100  font-bold mb-2"
         >
           <p className="text-black">Location</p>
         </label>
@@ -84,7 +84,7 @@ function AddService() {
           name="location"
           value={formData.location}
           onChange={handleChange}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100  leading-tight focus:outline-none focus:shadow-outline"
         >
           <option value="">Select a location</option>
           <option value="sylhet">Sylhet</option>
@@ -96,17 +96,14 @@ function AddService() {
       {/* Size */}
       {/* Size */}
       <div className="mb-4">
-        <label
-          htmlFor="size"
-          className="block text-slate-100-700 font-bold mb-2"
-        >
+        <label htmlFor="size" className="block text-slate-100  font-bold mb-2">
           <p className="text-black">Size</p>
         </label>
         <select
           name="size"
           value={formData.size}
           onChange={handleChange}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100  leading-tight focus:outline-none focus:shadow-outline"
         >
           <option value="">Select a size</option>
           <option value="small">Small</option>
@@ -118,7 +115,7 @@ function AddService() {
       <div className="flex items-center justify-center">
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-blue-500 hover:bg-blue  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
           Add
         </button>
