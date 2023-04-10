@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../UserContext/AuthProvider";
 import { useContext } from "react";
+import SmallLoaing from "../../SmallLoading/SmallLoaing";
 
 const Header = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, loading } = useContext(AuthContext);
   const handlelogout = () => {
     logOut();
   };
@@ -34,7 +35,9 @@ const Header = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        {user?.email ? (
+        {loading ? (
+          <SmallLoaing />
+        ) : user?.email ? (
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
