@@ -10,7 +10,7 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [loginError, setLoginError] = useState("");
+  const [loginError, setLoginError, setLoading] = useState("");
   const { signIn, forgetPassword } = useContext(AuthContext);
   const [loginemail, setLoginemail] = useState("");
   const location = useLocation();
@@ -31,6 +31,7 @@ const Login = () => {
       })
       .catch((error) => {
         // console.log(error.message)
+        // setLoading(false);
         setLoginError(error.message);
       });
   };

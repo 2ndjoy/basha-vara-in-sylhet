@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../UserContext/AuthProvider";
 
 const Register = () => {
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, updateUserProfile, setLoading } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -42,6 +42,7 @@ const Register = () => {
           updateUserProfile(data.name, imgData.data.display_url).then(
             toast.success("user created successfully")
           );
+          setLoading(false);
           navigate(from, { replace: true }).catch((err) => console.log(err));
         });
       });
