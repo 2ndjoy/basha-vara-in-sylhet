@@ -9,7 +9,7 @@ const Home = () => {
     <div>
       <FilterBox></FilterBox>
       {/* <Catagories></Catagories> */}
-      <About></About>
+      {/* <About></About> */}
     </div>
   );
 };

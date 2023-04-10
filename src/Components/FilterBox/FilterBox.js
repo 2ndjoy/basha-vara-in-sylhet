@@ -2,7 +2,7 @@ import React from "react";
 
 const FilterBox = () => {
   return (
-    <div className="m-5">
+    <div className="m-5 mt-12">
       <div className="grid justify-center">
         <select className="select w-full max-w-xs bg-slate-200 text-black">
           <option disabled selected>

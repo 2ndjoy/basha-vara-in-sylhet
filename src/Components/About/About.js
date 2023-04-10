@@ -4,7 +4,7 @@ import Accordion from "../Accordion/Accordion";
 
 const About = () => {
   return (
-    <div className="text-black lg:flex lg:justify-evenly m-1 my-9 grid justify-center">
+    <div className="text-black lg:flex lg:justify-evenly my-44 grid justify-center">
       {/* <div className="collapse">
         <input type="checkbox" />
         <div className="collapse-title text-xl font-medium">
