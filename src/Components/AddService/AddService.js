@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
-function FilterBox() {
+function AddService() {
   const initialFormData = {
+    rooms: "",
+    image: "",
     location: "",
     size: "",
   };
@@ -27,6 +29,49 @@ function FilterBox() {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+      <div className="mb-4">
+        <label
+          htmlFor="rooms"
+          className="block  text-slate-100-700 font-bold mb-2"
+        >
+          <p className="text-black">Number of room</p>
+        </label>
+        <input
+          type="text"
+          name="rooms"
+          value={formData.rooms}
+          onChange={handleChange}
+          placeholder="eg: 3 bedroom, 2 bathroom, a kitchen"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100-700 leading-tight focus:outline-none focus:shadow-outline"
+        />
+      </div>
+      <div className="mb-4">
+        <label
+          htmlFor="image"
+          className="block  text-slate-100-700 font-bold mb-2"
+        >
+          <p className="text-black">Add an Image link</p>
+        </label>
+        <input
+          type="text"
+          name="image"
+          value={formData.image}
+          onChange={handleChange}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100-700 leading-tight focus:outline-none focus:shadow-outline"
+        />
+      </div>
+      {/* <div className="mb-4">
+        <label htmlFor="email" className="block text-slate-100-700 font-bold mb-2">
+          Email
+        </label>
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100-700 leading-tight focus:outline-none focus:shadow-outline"
+        />
+      </div> */}
       {/* Location */}
       <div className="mb-4">
         <label
@@ -82,4 +127,4 @@ function FilterBox() {
   );
 }
 
-export default FilterBox;
+export default AddService;
