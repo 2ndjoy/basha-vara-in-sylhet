@@ -6,6 +6,7 @@ function AddService() {
     image: "",
     location: "",
     size: "",
+    phnNumber: "",
   };
 
   const [formData, setFormData] = useState(initialFormData);
@@ -106,6 +107,22 @@ function AddService() {
           <option value="medium">Medium</option>
           <option value="large">Large</option>
         </select>
+      </div>
+      <div className="mb-4">
+        <label
+          htmlFor="phnNumber"
+          className="block  text-slate-100  font-bold mb-2"
+        >
+          <p className="text-black">Contact no</p>
+        </label>
+        <input
+          type="text"
+          name="phnNumber"
+          required
+          value={formData.phnNumber}
+          onChange={handleChange}
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100  leading-tight focus:outline-none focus:shadow-outline"
+        />
       </div>
 
       <div className="flex items-center justify-center">
