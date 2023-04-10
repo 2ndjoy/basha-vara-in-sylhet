@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../UserContext/AuthProvider";
+import { useContext } from "react";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handlelogout = () => {
+    logOut();
+  };
   return (
     <div className="navbar bg-slate-200">
       <div className="flex-1">
@@ -16,10 +22,49 @@ const Header = () => {
           <li>
             <Link to="/addservices">Add Service</Link>
           </li>
-          <li>
-            <Link to="/login">Log In</Link>
-          </li>
+          {/* <li>
+            {user?.email ? (
+              <button onClick={handlelogout} className="btn btn-ghost">
+                Logout
+              </button>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
+          </li> */}
         </ul>
+      </div>
+      <div className="navbar-end">
+        {user?.email ? (
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img alt="" src={user?.photoURL} />
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <Link to="/dashboard" className="justify-between">
+                  Go to Dashboard
+                </Link>
+              </li>
+              <li className="mt-2">
+                <button
+                  className="btn btn-sm btn-outline"
+                  onClick={handlelogout}
+                >
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <button className="btn btn-sm btn-outline">
+            <Link to="/login">Log in</Link>
+          </button>
+        )}
       </div>
     </div>
   );

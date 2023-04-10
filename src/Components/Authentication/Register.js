@@ -1,78 +1,164 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../UserContext/AuthProvider";
 
-function Register() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Register = () => {
+  const { createUser, updateUserProfile } = useContext(AuthContext);
 
-  const handleSubmit = (event) => {
-    console.log(email, password);
-    event.preventDefault();
-    setEmail("");
-    setPassword("");
-    // Add your login logic here
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  const [createdemail, setCreatedemail] = useState("");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const [signUpError, setsignUpError] = useState("");
+
+  //   const imageHostKEy = process.env.REACT_APP_IMGB_APIKEY;
+  // console.log(imageHostKEy);
+  const handleSignUp = (data) => {
+    // console.log(imageHostKEy)
+    const photo = data.photo[0];
+    const formData = new FormData();
+    formData.append("image", photo);
+
+    const url = `https://api.imgbb.com/1/upload?key=94c2a478e54e97d802b6d035fdda4286`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgData) => {
+        createUser(data.email, data.password).then((result) => {
+          const user = result.user;
+          console.log(user);
+          saveUser(data.email, data.name);
+          updateUserProfile(data.name, imgData.data.display_url).then(
+            toast.success("user created successfully")
+          );
+          navigate(from, { replace: true }).catch((err) => console.log(err));
+        });
+      });
+    // console.log(data)
+  };
+
+  const saveUser = (email, name) => {
+    const user = { email, name };
+    fetch("https://note-niye-naw-server-2ndjoy.vercel.app/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // setCreatedemail(email);
+        // console.log(data)
+      });
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-      >
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">
-          Create an account
-        </h2>
-        <div className="mb-4">
-          <label className="block  text-black font-bold mb-2" htmlFor="email">
-            Email Address
-          </label>
+    <div className="h-[800px] flex justify-center items-center">
+      <div>
+        <h2 className="text-2xl text-center">Sign up</h2>
+        <form onSubmit={handleSubmit(handleSignUp)}>
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text">Name</span>
+            </label>
+            <input
+              className="input input-bordered w-full max-w-xs"
+              {...register("name", { required: "Name is required" })}
+              type="text"
+            />
+          </div>
+          {errors.name && (
+            <p role="alert" className="text-warning">
+              {errors.name.message}
+            </p>
+          )}
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              className="input input-bordered w-full max-w-xs"
+              {...register("email", { required: "Email is required" })}
+              type="email"
+            />
+          </div>
+          {errors.email && (
+            <p role="alert" className="text-warning">
+              {errors.email.message}
+            </p>
+          )}
+
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text">Select your picture</span>
+            </label>
+            <input
+              className="input w-full max-w-xs"
+              {...register("photo", { required: "Photo is required" })}
+              type="file"
+            />
+          </div>
+          {errors.photo && (
+            <p role="alert" className="text-warning">
+              {errors.photo.message}
+            </p>
+          )}
+
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <input
+              className="input input-bordered w-full max-w-xs"
+              type="password"
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "password must be 6 char long",
+                },
+                pattern: {
+                  value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/,
+                  message: "password must be strong",
+                },
+              })}
+            />
+          </div>
+          {errors.password && (
+            <p role="alert" className="text-warning">
+              {errors.password.message}
+            </p>
+          )}
+
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3  text-slate-100 leading-tight focus:outline-none focus:shadow-outline"
-            id="email"
-            type="email"
-            placeholder="Email Address"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </div>
-        <div className="mb-6">
-          <label
-            className="block  text-black font-bold mb-2"
-            htmlFor="password"
-          >
-            Password
-          </label>
-          <input
-            className="shadow appearance-none border border-red rounded w-full py-2 px-3  text-slate-100 leading-tight focus:outline-none focus:shadow-outline"
-            id="password"
-            type="password"
-            placeholder="********"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </div>
-        <div className="flex items-center justify-between">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="btn bg-amber-900 text-white w-full my-4"
+            value="Sign up"
             type="submit"
-          >
-            Sign Up
-          </button>
-        </div>
-        <label className="label">
-          <a href="#" className="label-text-alt link link-hover text-zinc-800">
-            Forgot password?
-          </a>
-        </label>
-        <label className="label">
-          Already have an account ?
-          <Link to="/login" className="text-blue-400">
-            Log In
+          />
+
+          {signUpError && <p className="text-red-500">{signUpError}</p>}
+        </form>
+        <p className="text-amber-900">
+          Already have an account? Please{" "}
+          <Link className="text-amber-700" to="/login">
+            Log in
           </Link>
-        </label>
-      </form>
+        </p>
+      </div>
     </div>
   );
-}
+};
 
 export default Register;
