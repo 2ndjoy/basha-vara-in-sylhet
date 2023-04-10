@@ -1,14 +1,39 @@
 import React from "react";
+import Accordionn from "../Accordion/Accordionn";
+import Accordion from "../Accordion/Accordion";
 
 const About = () => {
   return (
-    <div className="text-black">
-      <p className="text-center">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident,
-        vero. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Repudiandae dolorem maiores reprehenderit nulla itaque voluptate eaque
-        tempore natus accusamus rerum.
-      </p>
+    <div className="text-black lg:flex lg:justify-evenly m-1 my-9 grid justify-center">
+      {/* <div className="collapse">
+        <input type="checkbox" />
+        <div className="collapse-title text-xl font-medium">
+          Click me to show/hide content
+        </div>
+        <div className="collapse-content">
+          <p>hello</p>
+        </div>
+      </div>
+      <div className="collapse">
+        <input type="checkbox" />
+        <div className="collapse-title text-xl font-medium">
+          Click me to show/hide content
+        </div>
+        <div className="collapse-content">
+          <p>hello</p>
+        </div>
+      </div>
+      <div className="collapse">
+        <input type="checkbox" />
+        <div className="collapse-title text-xl font-medium">
+          Click me to show/hide content
+        </div>
+        <div className="collapse-content">
+          <p>hello</p>
+        </div>
+      </div> */}
+      <Accordionn></Accordionn>
+      {/* <Accordion></Accordion> */}
     </div>
   );
 };

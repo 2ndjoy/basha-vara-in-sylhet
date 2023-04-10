@@ -1,13 +1,14 @@
 import React from "react";
-import Carousel from "../Carousel/Carousel";
+
 import Catagories from "../Catagories/Catagories";
 import About from "../About/About";
+import FilterBox from "../FilterBox/FilterBox";
 
 const Home = () => {
   return (
     <div>
-      <Carousel></Carousel>
-      <Catagories></Catagories>
+      <FilterBox></FilterBox>
+      {/* <Catagories></Catagories> */}
       <About></About>
     </div>
   );
