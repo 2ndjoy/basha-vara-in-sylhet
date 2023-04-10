@@ -8,6 +8,7 @@ import Register from "../Components/Authentication/Register";
 import Services from "../Components/Services/Services";
 import CheckDetails from "../Components/CheckDetails";
 import AddService from "../Components/AddService/AddService";
+import DashBoard from "../Components/DashBoard/DashBoard";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         element: <CheckDetails></CheckDetails>,
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashBoard></DashBoard>,
   },
 ]);
 
