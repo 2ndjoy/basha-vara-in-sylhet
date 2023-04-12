@@ -92,7 +92,7 @@ const Login = () => {
             )}
           </div>
           <input
-            className="btn bg-amber-900 text-white w-full my-4"
+            className="btn bg-blue-700 text-white w-full my-4"
             value="Login"
             type="submit"
           />
@@ -106,14 +106,14 @@ const Login = () => {
         >
           Forget Password?
         </button>
-        <p className="text-amber-900">
+        <p className="text-blue-900">
           New here?{" "}
-          <Link className="text-amber-700" to="/register">
+          <Link className="text-blue-700" to="/register">
             Create new Account
           </Link>
         </p>
         <div className="divider">OR</div>
-        <button className="btn text-amber-900 btn-outline w-full">
+        <button className="btn text-blue-900 btn-outline w-full">
           CONTINUE WITH GOOGLE
         </button>
       </div>

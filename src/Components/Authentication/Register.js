@@ -144,16 +144,16 @@ const Register = () => {
           )}
 
           <input
-            className="btn bg-amber-900 text-white w-full my-4"
+            className="btn bg-blue-900 text-white w-full my-4"
             value="Sign up"
             type="submit"
           />
 
           {signUpError && <p className="text-red-500">{signUpError}</p>}
         </form>
-        <p className="text-amber-900">
+        <p className="text-blue-900">
           Already have an account? Please{" "}
-          <Link className="text-amber-700" to="/login">
+          <Link className="text-blue-700" to="/login">
             Log in
           </Link>
         </p>

@@ -222,7 +222,7 @@ const AddService = () => {
           )}
 
           <input
-            className="btn bg-amber-900 text-white w-1/2 my-4"
+            className="btn bg-blue-600 text-white w-1/2 my-4"
             value="Add service"
             type="submit"
           />
