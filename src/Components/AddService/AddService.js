@@ -51,7 +51,7 @@ const AddService = () => {
             .then((result) => {
               if (result.acknowledged) {
                 toast.success(`Added to the database successfully`);
-                // navigate("/dashboard/myservices");
+                navigate("/services");
                 reset();
               }
             });
