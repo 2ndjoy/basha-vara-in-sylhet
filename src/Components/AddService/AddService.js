@@ -1,118 +1,118 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../UserContext/AuthProvider";
-import Loading from "../../Loading/Loading";
 
-function AddService() {
-  const { user, loading, setLoading } = useContext(AuthContext);
+const AddService = () => {
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+  const { user } = useContext(AuthContext);
 
-  // if (user.displayName === null) {
-  //   setLoading(true);
-  // } else {
-  //   setLoading(false);
-  // }
+  const handleAddService = (data) => {
+    // console.log(data);
 
-  const initialFormData = {
-    rooms: "",
-    image: "",
-    location: "",
-    size: "",
-    phnNumber: "",
-    userName: "",
-    userEmail: "",
+    const photo = data.photo[0];
+    const formData = new FormData();
+    formData.append("image", photo);
+    const url = `https://api.imgbb.com/1/upload?key=94c2a478e54e97d802b6d035fdda4286`;
+
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgData) => {
+        if (imgData.success) {
+          const service = {
+            renterName: data.sellerName,
+            rentFee: data.rentFee,
+            availability: data.availability,
+            size: data.size,
+            description: data.description,
+            serviceImage: imgData.data.display_url,
+            renterPhoneNumber: data.renterPhoneNumber,
+            serviceLocation: data.serviceLocation,
+            email: user.email,
+          };
+          fetch("http://localhost:5000/services", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(service),
+          })
+            .then((res) => res.json())
+            .then((result) => {
+              if (result.acknowledged) {
+                toast.success(`Added to the database successfully`);
+                // navigate("/dashboard/myservices");
+                reset();
+              }
+            });
+          console.log(service);
+          // reset();
+        }
+      });
   };
-
-  const [formData, setFormData] = useState(initialFormData);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(formData); // You can replace this with your own submit logic
-    resetForm();
-  };
-
-  const handleChange = (event) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const resetForm = () => {
-    setFormData(initialFormData);
-  };
-
   return (
-    <>
-      {loading ? (
-        <Loading />
-      ) : (
-        <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-          <div className="mb-4">
-            <label
-              htmlFor="rooms"
-              className="block  text-slate-100  font-bold mb-2"
-            >
-              <p className="text-black">Number of room</p>
+    <div className="grid justify-center py-11">
+      <div className="w-96 p-7">
+        <h2 className="text-3xl font bold text-center mt-11 mb-9">
+          Add service
+        </h2>
+        <form onSubmit={handleSubmit(handleAddService)}>
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text">Your Name</span>
             </label>
             <input
+              className="input input-bordered w-full max-w-xs"
+              defaultValue={user?.displayName}
+              {...register("sellerName", {
+                required: "Seller Name is required",
+              })}
               type="text"
-              name="rooms"
-              required
-              value={formData.rooms}
-              onChange={handleChange}
-              placeholder="eg: 3 bedroom, 2 bathroom, a kitchen"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100  leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
-          <div className="hidden">
-            <label
-              htmlFor="userName"
-              className="block  text-slate-100  font-bold mb-2"
-            >
-              <p className="text-black">You Name</p>
-            </label>
-            <input
-              type="text"
-              name="userName"
-              // required
-              value={(formData.userName = user?.displayName)}
-              onChange={handleChange}
-              placeholder={user?.displayName}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100  leading-tight focus:outline-none focus:shadow-outline"
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="image"
-              className="block  text-slate-100  font-bold mb-2"
-            >
-              <p className="text-black">Add an Image link</p>
-            </label>
-            <input
-              type="text"
-              name="image"
-              required
-              value={formData.image}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100  leading-tight focus:outline-none focus:shadow-outline"
-            />
-          </div>
+          {errors.renterName && (
+            <p role="alert" className="text-warning">
+              {errors.renterName.message}
+            </p>
+          )}
 
-          {/* Location */}
-          <div className="mb-4">
-            <label
-              htmlFor="location"
-              className="block text-slate-100  font-bold mb-2"
-            >
-              <p className="text-black">Location</p>
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text">Rent fee</span>
+            </label>
+            <input
+              className="input input-bordered w-full max-w-xs"
+              {...register("rentFee", { required: "Rent fee is required" })}
+              type="text"
+            />
+          </div>
+          {errors.rentFee && (
+            <p role="alert" className="text-warning">
+              {errors.rentFee.message}
+            </p>
+          )}
+
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text">Location</span>
             </label>
             <select
-              name="location"
-              value={formData.location}
-              required
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100  leading-tight focus:outline-none focus:shadow-outline"
+              className="select input-bordered w-full max-w-xs"
+              {...register("serviceLocation", {
+                required: "Location is required",
+              })}
             >
-              <option value="">Select a location</option>
+              <option value="">Select a location</option>{" "}
               <option value="sylhet">Sylhet</option>
               <option value="dhaka">Dhaka</option>
               <option value="chittagong">Chittagong</option>
@@ -122,21 +122,21 @@ function AddService() {
             </select>
           </div>
 
-          {/* Size */}
-          {/* Size */}
-          <div className="mb-4">
-            <label
-              htmlFor="size"
-              className="block text-slate-100  font-bold mb-2"
-            >
-              <p className="text-black">Size</p>
+          {errors.serviceLocation && (
+            <p role="alert" className="text-warning">
+              {errors.serviceLocation.message}
+            </p>
+          )}
+
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text">Size</span>
             </label>
             <select
-              name="size"
-              value={formData.size}
-              required
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100  leading-tight focus:outline-none focus:shadow-outline"
+              className="select input-bordered w-full max-w-xs"
+              {...register("size", {
+                required: "Size is required",
+              })}
             >
               <option value="">Select a size</option>
               <option value="small">Small</option>
@@ -144,50 +144,92 @@ function AddService() {
               <option value="large">Large</option>
             </select>
           </div>
-          <div className="mb-4">
-            <label
-              htmlFor="phnNumber"
-              className="block  text-slate-100  font-bold mb-2"
-            >
-              <p className="text-black">Contact no</p>
+
+          {errors.size && (
+            <p role="alert" className="text-warning">
+              {errors.size.message}
+            </p>
+          )}
+
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text">Phone number</span>
             </label>
             <input
+              className="input input-bordered w-full max-w-xs"
+              {...register("renterPhoneNumber", {
+                required: "Phone number is required",
+              })}
               type="text"
-              name="phnNumber"
-              required
-              value={formData.phnNumber}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100  leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
+          {errors.renterPhoneNumber && (
+            <p role="alert" className="text-warning">
+              {errors.renterPhoneNumber.message}
+            </p>
+          )}
 
-          <div className="hidden">
-            <label
-              htmlFor="userEmail"
-              className="block  text-slate-100  font-bold mb-2"
-            ></label>
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text">Select picture</span>
+            </label>
             <input
-              type="text"
-              name="userEmail"
-              required
-              value={(formData.userEmail = user?.email)}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100  leading-tight focus:outline-none focus:shadow-outline"
+              className="input w-full max-w-xs"
+              {...register("photo", { required: "Photo is required" })}
+              type="file"
             />
           </div>
+          {errors.photo && (
+            <p role="alert" className="text-warning">
+              {errors.photo.message}
+            </p>
+          )}
 
-          <div className="flex items-center justify-center">
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              Add
-            </button>
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text">Available from</span>
+            </label>
+            <input
+              className="input input-bordered w-full max-w-xs"
+              {...register("availability", {
+                required: "availability is required",
+              })}
+              type="text"
+            />
           </div>
+          {errors.availability && (
+            <p role="alert" className="text-warning">
+              {errors.availability.message}
+            </p>
+          )}
+
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text">Description</span>
+            </label>
+            <input
+              className="input input-bordered w-full max-w-xs"
+              {...register("description", {
+                required: "Description is required",
+              })}
+              type="text"
+            />
+          </div>
+          {errors.description && (
+            <p role="alert" className="text-warning">
+              {errors.description.message}
+            </p>
+          )}
+
+          <input
+            className="btn bg-amber-900 text-white w-1/2 my-4"
+            value="Add service"
+            type="submit"
+          />
         </form>
-      )}
-    </>
+      </div>
+    </div>
   );
-}
+};
 
 export default AddService;
