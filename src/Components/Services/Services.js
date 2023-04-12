@@ -7,7 +7,7 @@ const Services = () => {
   // const [services, setServices] = useState([]);
   const { loading, setLoading } = useContext(AuthContext);
   // useEffect(() => {
-  //   fetch("http://localhost:5000/services")
+  //   fetch("https://basha-vara-in-sylhet-server.vercel.app/services")
   //     .then((res) => res.json())
   //     .then((data) => setServices(data));
   // }, []);
@@ -16,7 +16,9 @@ const Services = () => {
   const { data: services = [], refetch } = useQuery({
     queryKey: ["services"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/services");
+      const res = await fetch(
+        "https://basha-vara-in-sylhet-server.vercel.app/services"
+      );
       const data = await res.json();
       return data;
     },
