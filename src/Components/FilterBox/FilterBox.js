@@ -65,7 +65,7 @@ function FilterBox() {
             value={formData.location}
             required
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow text-black appearance-none border rounded w-full py-2 px-3 text-slate-100-700 leading-tight focus:outline-none focus:shadow-outline"
           >
             <option value="">Select a location</option>
             <option value="sylhet">Sylhet</option>
@@ -90,7 +90,7 @@ function FilterBox() {
             name="size"
             value={formData.size}
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-slate-100-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow text-black appearance-none border rounded w-full py-2 px-3 text-slate-100-700 leading-tight focus:outline-none focus:shadow-outline"
             required
           >
             <option value="">Select a size</option>

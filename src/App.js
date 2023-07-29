@@ -4,7 +4,7 @@ import router from "./Router/Routes";
 import { Toaster } from "react-hot-toast";
 function App() {
   return (
-    <div className="bg-slate-100 max-w-[1440px] mx-auto">
+    <div className="max-w-[1440px] mx-auto">
       <RouterProvider router={router}></RouterProvider>
       <Toaster />
     </div>
