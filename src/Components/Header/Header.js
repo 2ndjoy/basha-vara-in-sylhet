@@ -12,7 +12,7 @@ const Header = () => {
     <div className="navbar bg-slate-200">
       <div className="flex-1">
         <Link to="/" className="normal-case text-xl font-bold text-black">
-          RentHouse
+          <i>FindBasha</i>
         </Link>
       </div>
       <div className="flex-none  text-black">

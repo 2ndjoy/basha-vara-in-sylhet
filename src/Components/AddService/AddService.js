@@ -40,7 +40,7 @@ const AddService = () => {
             serviceLocation: data.serviceLocation,
             email: user.email,
           };
-          fetch("https://basha-vara-in-sylhet-server.vercel.app/services", {
+          fetch("http://localhost:5000/services", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -61,15 +61,15 @@ const AddService = () => {
       });
   };
   return (
-    <div className="grid justify-center py-11">
+    <div className="grid  justify-center py-11">
       <div className="w-96 p-7">
-        <h2 className="text-3xl font bold text-center mt-11 mb-9">
+        <h2 className="text-3xl font bold text-center text-black mt-11 mb-9">
           Add service
         </h2>
         <form onSubmit={handleSubmit(handleAddService)}>
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text">Your Name</span>
+              <span className="label-text text-black">Your Name</span>
             </label>
             <input
               className="input input-bordered w-full max-w-xs"
@@ -88,7 +88,7 @@ const AddService = () => {
 
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text">Rent fee</span>
+              <span className="label-text text-black">Rent fee</span>
             </label>
             <input
               className="input input-bordered w-full max-w-xs"
@@ -104,7 +104,7 @@ const AddService = () => {
 
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text">Location</span>
+              <span className="label-text text-black">Location</span>
             </label>
             <select
               className="select input-bordered w-full max-w-xs"
@@ -130,7 +130,7 @@ const AddService = () => {
 
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text">Size</span>
+              <span className="label-text text-black">Size</span>
             </label>
             <select
               className="select input-bordered w-full max-w-xs"
@@ -153,7 +153,7 @@ const AddService = () => {
 
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text">Phone number</span>
+              <span className="label-text text-black">Phone number</span>
             </label>
             <input
               className="input input-bordered w-full max-w-xs"
@@ -171,7 +171,7 @@ const AddService = () => {
 
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text">Select picture</span>
+              <span className="label-text text-black">Select picture</span>
             </label>
             <input
               className="input w-full max-w-xs"
@@ -187,7 +187,7 @@ const AddService = () => {
 
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text">Available from</span>
+              <span className="label-text text-black">Available from</span>
             </label>
             <input
               className="input input-bordered w-full max-w-xs"
@@ -205,7 +205,7 @@ const AddService = () => {
 
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text">Description</span>
+              <span className="label-text text-black">Description</span>
             </label>
             <input
               className="input input-bordered w-full max-w-xs"

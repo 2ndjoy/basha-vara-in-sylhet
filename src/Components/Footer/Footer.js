@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="footer items-center p-4 bg-slate-200 text-black mt-96 p-9">
       <div className="items-center grid">
         <p className="text-xl font-bold">
-          BashaVara
+          <i>FindBasha</i>
           <br />{" "}
         </p>
         <small className="font-">Copyright © 2023 - All right reserved</small>

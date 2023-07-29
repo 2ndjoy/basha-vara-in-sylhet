@@ -7,7 +7,7 @@ const Services = () => {
   // const [services, setServices] = useState([]);
   const { loading, setLoading } = useContext(AuthContext);
   // useEffect(() => {
-  //   fetch("https://basha-vara-in-sylhet-server.vercel.app/services")
+  //   fetch("http://localhost:5000/services")
   //     .then((res) => res.json())
   //     .then((data) => setServices(data));
   // }, []);
@@ -16,9 +16,7 @@ const Services = () => {
   const { data: services = [], refetch } = useQuery({
     queryKey: ["services"],
     queryFn: async () => {
-      const res = await fetch(
-        "https://basha-vara-in-sylhet-server.vercel.app/services"
-      );
+      const res = await fetch("http://localhost:5000/services");
       const data = await res.json();
       return data;
     },
@@ -29,10 +27,10 @@ const Services = () => {
   }
 
   return (
-    <div className="mx-3">
-      <div className="py-5 mx-2 mb-32 flex flex-wrap justify-center gap-2">
+    <div className=" lg:mx-24 my-16 mx-0">
+      <div className="py-0 mb-32 grid lg:grid-cols-4 md:grid-cols-3 justify-center gap-2">
         {loading ? (
-          <p>Load</p>
+          <p>Loading</p>
         ) : (
           services.map((service) => (
             <ServiceId

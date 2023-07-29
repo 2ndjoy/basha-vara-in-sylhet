@@ -16,9 +16,9 @@ const ServiceId = ({ service }) => {
   console.log(_id);
   return (
     <div>
-      <div className="card card-compact w-50 h-50 bg-slate-400 text-black shadow-xl">
+      <div className="card card-compact w-56 h-3/4 bg-slate-400 text-black shadow-xl">
         <figure>
-          <img src={serviceImage} alt="Shoes" className="h-50 w-56" />
+          <img src={serviceImage} alt="Shoes" className="h-56 w-56" />
         </figure>
         <div className="card-body">
           <p className="bold">

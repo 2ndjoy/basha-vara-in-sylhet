@@ -11,7 +11,7 @@ const Register = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const [createdemail, setCreatedemail] = useState("");
+  // const [createdemail, setCreatedemail] = useState("");
 
   const {
     register,
@@ -66,16 +66,16 @@ const Register = () => {
   };
 
   return (
-    <div className="h-[800px] flex justify-center items-center">
+    <div className="h-[800px] text-black flex justify-center items-center">
       <div>
         <h2 className="text-2xl text-center">Sign up</h2>
         <form onSubmit={handleSubmit(handleSignUp)}>
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text">Name</span>
+              <span className="label-text text-black">Name</span>
             </label>
             <input
-              className="input input-bordered w-full max-w-xs"
+              className="input text-white input-bordered w-full max-w-xs"
               {...register("name", { required: "Name is required" })}
               type="text"
             />
@@ -87,10 +87,10 @@ const Register = () => {
           )}
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text text-black">Email</span>
             </label>
             <input
-              className="input input-bordered w-full max-w-xs"
+              className="input text-white input-bordered w-full max-w-xs"
               {...register("email", { required: "Email is required" })}
               type="email"
             />
@@ -103,10 +103,10 @@ const Register = () => {
 
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text">Select your picture</span>
+              <span className="label-text text-black">Select your picture</span>
             </label>
             <input
-              className="input w-full max-w-xs"
+              className="input text-white w-full max-w-xs"
               {...register("photo", { required: "Photo is required" })}
               type="file"
             />
@@ -119,10 +119,10 @@ const Register = () => {
 
           <div className="form-control w-full max-w-xs">
             <label className="label">
-              <span className="label-text">Password</span>
+              <span className="label-text text-black">Password</span>
             </label>
             <input
-              className="input input-bordered w-full max-w-xs"
+              className="input text-white input-bordered w-full max-w-xs"
               type="password"
               {...register("password", {
                 required: "Password is required",

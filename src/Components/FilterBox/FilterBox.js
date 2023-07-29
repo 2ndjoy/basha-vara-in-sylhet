@@ -1,7 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../UserContext/AuthProvider";
-// import ResultCard from "./resultCard";
 import { Link } from "react-router-dom";
 
 function FilterBox() {
@@ -12,7 +10,8 @@ function FilterBox() {
     size: "",
   };
 
-  // const [datas, setData] = useState([]);
+  const imagUrl =
+    "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
 
   const [formData, setFormData] = useState(initialFormData);
 
@@ -20,7 +19,7 @@ function FilterBox() {
     event.preventDefault();
 
     fetch(
-      `https://basha-vara-in-sylhet-server.vercel.app/specific?serviceLocation=${formData.location}&&size=${formData.size}`
+      `http://localhost:5000/specific?serviceLocation=${formData.location}&&size=${formData.size}`
     )
       .then((res) => res.json())
       .then((data) => setData(data));
@@ -40,7 +39,18 @@ function FilterBox() {
   };
 
   return (
-    <>
+    <div
+      className="text-white"
+      style={{
+        backgroundImage: `linear-gradient( rgba(2, 41, 88, 6),rgba(75, 69, 69, 0.3)), url(${imagUrl})`,
+        padding: "4vw",
+        backgroundSize: "cover", // Adjust backgroundSize as needed
+        backgroundRepeat: "no-repeat", // Adjust backgroundRepeat as needed
+        backgroundPosition: "center", // Adjust backgroundPosition as needed
+        width: "100%",
+        height: "70%", // Set an appropriate height for the container
+      }}
+    >
       <form onSubmit={handleSubmit} className="max-w-md mx-auto">
         {/* Location */}
         <div className="mb-4">
@@ -48,7 +58,7 @@ function FilterBox() {
             htmlFor="location"
             className="block text-slate-100-700 font-bold mb-2"
           >
-            <p className="text-black">Location</p>
+            <p className="text-white">Location</p>
           </label>
           <select
             name="location"
@@ -74,7 +84,7 @@ function FilterBox() {
             htmlFor="size"
             className="block text-slate-100-700 font-bold mb-2"
           >
-            <p className="text-black">Size</p>
+            <p className="text-white">Size</p>
           </label>
           <select
             name="size"
@@ -99,6 +109,7 @@ function FilterBox() {
           </button>
         </div>
       </form>
+
       <div className="flex flex-wrap gap-2 justify-center mt-12">
         {loading ? (
           <p>Loading....</p>
@@ -113,12 +124,12 @@ function FilterBox() {
           dataa.map((dat) => (
             <div>
               <div>
-                <div className="card card-compact w-50 h-50 bg-slate-400 text-black shadow-xl">
+                <div className="card card-compact w-50 h-30 bg-slate-400 text-black shadow-xl">
                   <figure>
                     <img
                       src={dat.serviceImage}
                       alt="Shoes"
-                      className="h-50 w-56"
+                      className="h-36 w-56"
                     />
                   </figure>
                   <div className="card-body">
@@ -161,7 +172,7 @@ function FilterBox() {
           ))
         )}
       </div>
-    </>
+    </div>
   );
 }
 

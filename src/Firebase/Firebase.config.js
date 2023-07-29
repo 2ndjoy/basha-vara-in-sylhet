@@ -1,3 +1,5 @@
+// Initializ
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -5,12 +7,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDdPBWZjRoVnHYfnOzAoPQxZZ8At73fU5A",
-  authDomain: "basha-vara-in-sylhet.firebaseapp.com",
-  projectId: "basha-vara-in-sylhet",
-  storageBucket: "basha-vara-in-sylhet.appspot.com",
-  messagingSenderId: "934926019664",
-  appId: "1:934926019664:web:f8239a6dd3014caf3e7555",
+  apiKey: "AIzaSyDZ_nNQeOyEXzF1dGdthNggL0tUcQBSw1A",
+  authDomain: "findbasha-3f20a.firebaseapp.com",
+  projectId: "findbasha-3f20a",
+  storageBucket: "findbasha-3f20a.appspot.com",
+  messagingSenderId: "1026013912722",
+  appId: "1:1026013912722:web:13986230a8462d148f104b",
 };
 
 // Initialize Firebase

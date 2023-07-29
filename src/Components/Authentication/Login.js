@@ -50,21 +50,21 @@ const Login = () => {
   };
 
   return (
-    <div className="h-[800px] flex justify-center items-center">
+    <div className="h-[800px] text-black flex justify-center items-center">
       <div className="w-96 p-7">
         <h2 className="text-xl text-center">Login</h2>
         <form onSubmit={handleSubmit(handleLogin)}>
           <div className="form-control w-full max-w-xs">
             <label className="label">
               {" "}
-              <span className="label-text">Email</span>
+              <span className="label-text text-black">Email</span>
             </label>
             <input
               type="text"
               {...register("email", {
                 required: "Email Address is required",
               })}
-              className="input input-bordered w-full max-w-xs"
+              className="input text-white input-bordered w-full max-w-xs"
             />
             {errors.email && (
               <p className="text-red-600">{errors.email?.message}</p>
@@ -73,7 +73,7 @@ const Login = () => {
           <div className="form-control w-full max-w-xs">
             <label className="label">
               {" "}
-              <span className="label-text">Password</span>
+              <span className="label-text text-black">Password</span>
             </label>
             <input
               type="password"
@@ -84,7 +84,7 @@ const Login = () => {
                   message: "Password must be 6 characters or longer",
                 },
               })}
-              className="input input-bordered w-full max-w-xs"
+              className="input text-white input-bordered w-full max-w-xs"
             />
 
             {errors.password && (
@@ -101,7 +101,7 @@ const Login = () => {
           </div>
         </form>
         <button
-          className="label-text"
+          className="label-text text-black"
           onClick={handleSubmit(handleforgetPassword)}
         >
           Forget Password?
